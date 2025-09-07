@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday My Love</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial Rounded MT', sans-serif;
+      background: linear-gradient(to bottom, #ffe6f0, #ffd6eb);
+      overflow-x: hidden;
+      text-align: center;
+    }
+    .page { display: none; padding: 50px; min-height: 100vh; }
+    .active { display: block; }
+
+    h1 {
+      color: #d63384;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #ff99cc, 0 0 10px #ff66b2; }
+      to   { text-shadow: 0 0 20px #ff3385, 0 0 30px #ff1a75; }
+    }
+
+    button {
+      padding: 12px 25px;
+      margin-top: 20px;
+      font-size: 18px;
+      background: #ff99cc;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      color: white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+    button:hover { background: #ff4da6; transform: scale(1.1); }
+
+    .login-box {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      width: 320px;
+      margin: 100px auto;
+      box-shadow: 0 0 25px rgba(255,100,180,0.5);
+    }
+    input {
+      margin: 10px;
+      padding: 10px;
+      width: 90%;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    /* Memories carousel */
+    .carousel-container {
+      perspective: 1200px;
+      width: 350px;
+      height: 350px;
+      margin: auto;
+      position: relative;
+    }
+    .carousel {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      transform-style: preserve-3d;
+      transition: transform 1s;
+    }
+    .carousel img {
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid white;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+      cursor: pointer;
+    }
+    .song { margin-top: 30px; }
+
+    /* Quiz */
+    .quiz {
+      text-align: left;
+      margin: auto;
+      width: 70%;
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    }
+    .quiz p { font-size: 18px; }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -20px;
+      color: #ff4da6;
+      font-size: 24px;
+      animation: float 6s linear infinite;
+    }
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); opacity: 1; }
+      100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LOGIN PAGE -->
+  <div id="loginPage" class="page active">
+    <div class="login-box">
+      <h2>Login to Continue 💕</h2>
+      <input type="text" id="username" placeholder="Enter Username"><br>
+      <input type="password" id="password" placeholder="Enter Password"><br>
+      <button onclick="checkLogin()">Login</button>
+      <p id="error" style="color:red;"></p>
+    </div>
+  </div>
+
+  <!-- WISHES PAGE -->
+  <div id="wishesPage" class="page">
+    <h1>💖 Happy Birthday My Love Madureshwaran 💖</h1>
+    <p>You are my everything, my forever, and my sweetest memory 💕</p>
+    <img src="assets/images/main-photo.jpg" alt="Madureshwaran" width="220" height="220" style="border-radius:50%;border:5px solid white;box-shadow:0 0 10px gray;">
+    <br>
+    <button onclick="goTo('memoriesPage')">See Our Memories 📸</button>
+  </div>
+
+  <!-- MEMORIES PAGE -->
+  <div id="memoriesPage" class="page">
+    <h1>Our Beautiful Memories 💞</h1>
+    <div class="carousel-container">
+      <div class="carousel" id="carousel">
+        <!-- 10 rotating images -->
+        <img src="assets/images/photo1.jpg" style="transform: rotateY(0deg) translateZ(450px);">
+        <img src="assets/images/photo2.jpeg" style="transform: rotateY(36deg) translateZ(450px);">
+        <img src="assets/images/photo3.jpeg" style="transform: rotateY(72deg) translateZ(450px);">
+        <img src="assets/images/photo4.jpeg" style="transform: rotateY(108deg) translateZ(450px);">
+        <img src="assets/images/photo5.jpeg" style="transform: rotateY(144deg) translateZ(450px);">
+        <img src="assets/images/photo6.jpeg" style="transform: rotateY(180deg) translateZ(450px);">
+        <img src="assets/images/photo7.jpeg" style="transform: rotateY(216deg) translateZ(450px);">
+        <img src="assets/images/photo8.jpeg" style="transform: rotateY(252deg) translateZ(450px);">
+        <img src="assets/images/photo9.jpeg" style="transform: rotateY(288deg) translateZ(450px);">
+        <img src="assets/images/photo10.jpeg" style="transform: rotateY(324deg) translateZ(450px);">
+      </div>
+    </div>
+    <div class="song">
+      <p>🎶 Our Love Song 🎶</p>
+      <audio controls autoplay loop>
+        <source src="assets/song/love.mp3.mpeg" type="audio/mp3">
+      </audio>
+    </div>
+    <br>
+    <button onclick="goTo('quizPage')">Play Our Quiz 💌</button>
+  </div>
+
+  <!-- QUIZ PAGE -->
+  <div id="quizPage" class="page">
+    <h1>💌 Our Love Quiz 💌</h1>
+    <form id="quizForm" class="quiz">
+      <p>1. What is the cutest name you call me?</p>
+      <input type="text" name="q1"><br><br>
+
+      <p>2. My birthday date?</p>
+      <input type="text" name="q2"><br><br>
+
+      <p>3. Our first meet date/month?</p>
+      <input type="text" name="q3"><br><br>
+
+      <p>4. How much you love me?</p>
+      <input type="text" name="q4"><br><br>
+
+      <p>5. My favorite color?</p>
+      <input type="text" name="q5"><br><br>
+
+      <p>6. My favorite food?</p>
+      <input type="text" name="q6"><br><br>
+
+      <p>7. My favorite movie?</p>
+      <input type="text" name="q7"><br><br>
+
+      <p>8. My favorite song?</p>
+      <input type="text" name="q8"><br><br>
+
+      <p>9. My favorite place?</p>
+      <input type="text" name="q9"><br><br>
+
+      <p>10. My favorite dessert?</p>
+      <input type="text" name="q10"><br><br>
+
+      <button type="button" onclick="submitQuiz()">Submit Quiz</button>
+    </form>
+  </div>
+
+  <!-- RESULT PAGE -->
+  <div id="resultPage" class="page">
+    <h1>💘 Thank You My Love 💘</h1>
+    <p id="scoreText" style="font-size:22px; color:#d63384;"></p>
+    <p id="messageText" style="font-size:20px; color:#ff3385; font-weight:bold;"></p>
+    <h2>💭 Love Quotes for You 💭</h2>
+    <p>"You are my today and all of my tomorrows."</p>
+    <p>"In you, I’ve found the love of my life and my closest, truest friend."</p>
+    <p>"Every love story is beautiful, but ours is my favorite."</p>
+    <p>"I choose you. And I’ll choose you, over and over, without pause, without doubt, in a heartbeat."</p>
+  </div>
+
+  <script>
+    // floating hearts
+    setInterval(() => {
+      let heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 500);
+
+    // login check
+    function checkLogin() {
+      const user = document.getElementById("username").value;
+      const pass = document.getElementById("password").value;
+      if (user === "maddy" && pass === "md1913") {
+        goTo("wishesPage");
+      } else {
+        document.getElementById("error").innerText = "Invalid Username or Password!";
+      }
+    }
+
+    // page navigation
+    function goTo(pageId) {
+      document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+      document.getElementById(pageId).classList.add("active");
+    }
+
+    // quiz answer key
+    const answers = {
+      q1: "pappuma",
+      q2: "19/02/2007",
+      q3: "19/oct",
+      q4: "100%",
+      q5: "blue",
+      q6: "biryani",
+      q7: "remo",
+      q8: "mudhal nee mudivum nee",
+      q9: "your heart",
+      q10: "pallkova"
+    };
+
+    function submitQuiz() {
+      const form = document.forms["quizForm"];
+      let score = 0;
+      let total = Object.keys(answers).length;
+
+      for (let key in answers) {
+        if (form[key].value.trim().toLowerCase() === answers[key].toLowerCase()) {
+          score++;
+        }
+      }
+
+      let message = "";
+      if (score === total) {
+        message = "Perfect! You know me best 💖 Forever mine!";
+      } else if (score >= total/2) {
+        message = "Awww, you know me so well 😍";
+      } else {
+        message = "Hehe, you need to love me more 😉💕";
+      }
+
+      document.getElementById("scoreText").innerText = `You scored ${score} / ${total} 💕`;
+      document.getElementById("messageText").innerText = message;
+      goTo("resultPage");
+    }
+
+    // Manual carousel control
+    let angle = 0;
+    const carousel = document.getElementById("carousel");
+    const images = carousel.getElementsByTagName("img");
+
+    for (let img of images) {
+      img.addEventListener("click", () => {
+        angle -= 36; // move to next image (360/10 = 36deg)
+        carousel.style.transform = `rotateY(${angle}deg)`;
+      });
+    }
+  </script>
+</body>
+</html>
